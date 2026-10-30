@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Estudo Interativo - Apresentação SENAI</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --primary-dark: #003d80;
+            --secondary: #28a745;
+            --bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --text-muted: #666666;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        select, button {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .btn-toggle {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .btn-toggle:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .slide-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin: 0;
+        }
+
+        .btn-audio {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-audio:hover {
+            opacity: 0.9;
+        }
+
+        .speech-box {
+            background-color: #f8f9fa;
+            border: 1px dashed var(--primary);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .speech-box.blurred {
+            filter: blur(5px);
+            user-select: none;
+        }
+
+        .bullets {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .pronunciation-card {
+            background: #eef6ff;
+            border: 1px solid #b6d4fe;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+
+        .qa-card details {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+        }
+        .qa-card summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        .qa-card details p {
+            line-height: 1.55;
+            margin-bottom: 0;
+        }
+
+        .pronunciation-card h3 {
+            margin-top: 0;
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 600px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .slide-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Apresentação SENAI - Guia de Estudo</h1>
+        <p class="subtitle">Bloco Expandido (Slides 07, 07.5, 10 e 11) | Treino com Áudio</p>
+    </header>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="speedSelect">Velocidade da Fala:</label>
+            <select id="speedSelect">
+                <option value="0.8">0.8x (Devagar)</option>
+                <option value="1.0" selected>1.0x (Normal)</option>
+                <option value="1.2">1.2x (Rápido)</option>
+            </select>
+        </div>
+        <button class="btn-toggle" onclick="toggleBlur()">Modo Memorização (Ocultar Roteiros)</button>
+    </div>
+
+    <!-- Slide 07 -->
+    <div class="slide-card">
+        <div class="slide-header">
+            <h2 class="slide-title">Slide 07 - Diferencial: Plataforma Web</h2>
+            <button class="btn-audio" onclick="speakText('slide07-text')">
+                <span>🔊</span> Ouvir Roteiro
+            </button>
+        </div>
+        <div class="speech-box" id="slide07-text">
+            "O nosso projeto vai além da utilização de etiquetas e planilhas, pois propomos uma plataforma web própria, chamada Slotting Inteligente. Essa plataforma terá quatro funcionalidades principais: a importação de dados para utilizar informações dos materiais; o mapa de endereços para facilitar a visualização do almoxarifado; a classificação e sugestões de slotting considerando frequência, criticidade e armazenamento; e por fim, o painel de capacidade e indicadores para acompanhar a ocupação do espaço. Queremos oferecer uma ferramenta complementar ao TOTVS RM para otimizar o espaço e os processos logísticos."
+        </div>
+        <strong>Pontos Chave para Lembrar:</strong>
+        <ul class="bullets">
+            <li>Nome do software: Slotting Inteligente.</li>
+            <li>4 funcionalidades: Importação, Mapa, Classificação/Sugestões e Painel de Indicadores.</li>
+            <li>Objetivo: Ferramenta complementar ao TOTVS RM.</li>
+        </ul>
+    </div>
+
+        <div class="pronunciation-card qa-card">
+            <h3>Possíveis perguntas da banca</h3>
+            <details><summary>O que é o Slotting Inteligente?</summary><p>É uma plataforma web complementar que analisa informações dos materiais e ajuda a indicar endereços mais adequados no almoxarifado.</p></details>
+            <details><summary>Quais são as quatro funcionalidades principais?</summary><p>Importação de dados, mapa de endereços, classificação e sugestões de slotting, e painel de capacidade e indicadores.</p></details>
+            <details><summary>O que significa slotting?</summary><p>É a organização estratégica dos materiais nos endereços de armazenagem, considerando frequência de movimentação, criticidade e características do item.</p></details>
+            <details><summary>Por que criar uma plataforma web se a empresa já utiliza o TOTVS RM?</summary><p>Porque a proposta não é substituir o sistema oficial. A plataforma funciona como apoio à análise e à organização física do estoque.</p></details>
+            <details><summary>Quais benefícios a plataforma pode trazer?</summary><p>Pode facilitar a localização dos materiais, melhorar o aproveitamento do espaço e apoiar decisões de armazenagem. Os resultados precisam ser avaliados durante o piloto.</p></details>
+        </div>
+
+
+    <!-- Slide 7.5 -->
+    <div class="slide-card">
+        <div class="slide-header">
+            <h2 class="slide-title">Slide 7.5 - Diferencial: Serviços de Implantação</h2>
+            <button class="btn-audio" onclick="speakText('slide75-text')">
+                <span>🔊</span> Ouvir Roteiro
+            </button>
+        </div>
+        <div class="speech-box" id="slide75-text">
+            "Além da plataforma web, nossa proposta inclui os serviços técnicos para sua implantação. A primeira etapa é o diagnóstico do layout do almoxarifado. Em seguida, a instalação e configuração dos leitores de código de barras. A terceira etapa é a validação da integração com o TOTVS RM, garantindo a compatibilidade técnica. Por fim, o treinamento dos funcionários para utilizar os novos procedimentos. Oferecemos uma solução completa que une tecnologia, organização física e capacitação profissional."
+        </div>
+        <strong>Pontos Chave para Lembrar:</strong>
+        <ul class="bullets">
+            <li>4 etapas do serviço: Diagnóstico de layout, Instalação dos leitores, Validação de integração e Treinamento.</li>
+            <li>Solução completa: Tecnologia + Organização Física + Capacitação.</li>
+        </ul>
+    </div>
+
+        <div class="pronunciation-card qa-card">
+            <h3>Possíveis perguntas da banca</h3>
+            <details><summary>Por que é necessário fazer um diagnóstico do layout?</summary><p>Para conhecer a estrutura atual, identificar limitações e planejar os endereços de armazenagem antes de implantar a solução.</p></details>
+            <details><summary>Para que servem os leitores de código de barras?</summary><p>Para identificar materiais e posições com mais agilidade, reduzindo erros de conferência e de endereçamento.</p></details>
+            <details><summary>Como será validada a integração com o TOTVS RM?</summary><p>Por meio de testes controlados, verificando se os dados necessários são recebidos e interpretados corretamente, sem alterar os registros oficiais sem autorização.</p></details>
+            <details><summary>Por que treinar os funcionários?</summary><p>Para que todos entendam o novo procedimento, utilizem os equipamentos corretamente e sigam um padrão de trabalho.</p></details>
+            <details><summary>O que acontece se os funcionários tiverem dificuldade?</summary><p>Podem ser oferecidas orientações práticas, acompanhamento inicial e ajustes no treinamento conforme as dificuldades identificadas.</p></details>
+        </div>
+
+
+    <!-- Slide 10 -->
+    <div class="slide-card">
+        <div class="slide-header">
+            <h2 class="slide-title">Slide 10 - Leitura de Códigos</h2>
+            <button class="btn-audio" onclick="speakText('slide10-text')">
+                <span>🔊</span> Ouvir Roteiro
+            </button>
+        </div>
+        <div class="speech-box" id="slide10-text">
+            "Na leitura de códigos, propomos a utilização de leitores 2D para acelerar a conferência dos itens e endereços. O fluxo é simples: o operador lê o código do material, lê a etiqueta da posição na prateleira, o sistema confere a correspondência e registra. Estimamos um investimento inicial em torno de 3.100 Reais para este piloto, cobrindo equipamento, testes, integração e treinamento."
+        </div>
+        <strong>Pontos Chave para Lembrar:</strong>
+        <ul class="bullets">
+            <li>Leitor 2D para conferir item + endereço.</li>
+            <li>Fluxo em 4 passos: Material -> Posição -> Conferência -> Registro.</li>
+            <li>Custo total estimado: R$ 3.100.</li>
+        </ul>
+    </div>
+
+        <div class="pronunciation-card qa-card">
+            <h3>Possíveis perguntas da banca</h3>
+            <details><summary>Qual é a diferença entre um leitor 1D e um leitor 2D?</summary><p>O leitor 1D lê códigos lineares, como o código de barras tradicional. O 2D também lê códigos como QR Code e Data Matrix, que podem armazenar mais informações.</p></details>
+            <details><summary>Por que utilizar um leitor 2D?</summary><p>Porque ele oferece flexibilidade para ler diferentes formatos de códigos e pode agilizar a identificação de materiais e endereços.</p></details>
+            <details><summary>Como o sistema evita que o material seja guardado no lugar errado?</summary><p>O operador lê o código do material e o código do endereço. O sistema compara as informações e sinaliza se existe divergência.</p></details>
+            <details><summary>De onde veio o valor estimado de R$ 3.100?</summary><p>É uma estimativa inicial para o piloto, considerando equipamento, testes, integração e treinamento. O valor final depende de cotações e validação técnica.</p></details>
+            <details><summary>O que acontece se o leitor não funcionar?</summary><p>O procedimento deve prever conferência manual temporária, registro da ocorrência e manutenção ou substituição do equipamento, seguindo as regras da empresa.</p></details>
+        </div>
+
+
+    <!-- Slide 11 -->
+    <div class="slide-card">
+        <div class="slide-header">
+            <h2 class="slide-title">Slide 11 - Recebimento</h2>
+            <button class="btn-audio" onclick="speakText('slide11-text')">
+                <span>🔊</span> Ouvir Roteiro
+            </button>
+        </div>
+        <div class="speech-box" id="slide11-text">
+            "No fluxo de recebimento, mantemos total conformidade com o processo oficial. Primeiro é conferida a Ordem de Compra, valida-se o material e a quantidade, registra-se a FRS no TOTVS RM e, por fim, o nosso sistema orienta a confirmação da posição exata onde o item deve ser guardado. A leitura otimiza a conferência, mas não substitui as autorizações oficiais."
+        </div>
+        <strong>Pontos Chave para Lembrar:</strong>
+        <ul class="bullets">
+            <li>Fluxo: 1. Ordem de Compra -> 2. Conferência -> 3. FRS no RM -> 4. Endereçamento.</li>
+            <li>Não substitui lançamentos oficiais.</li>
+        </ul>
+    </div>
+
+        <div class="pronunciation-card qa-card">
+            <h3>Possíveis perguntas da banca</h3>
+            <details><summary>O que é uma Ordem de Compra?</summary><p>É o documento que formaliza a compra e apresenta informações como fornecedor, materiais e quantidades solicitadas.</p></details>
+            <details><summary>O que é a FRS?</summary><p>É o registro utilizado no processo interno de recebimento, conforme o procedimento adotado pela empresa. A sigla e sua aplicação devem seguir a nomenclatura oficial da organização.</p></details>
+            <details><summary>Por que conferir o material e a quantidade?</summary><p>Para verificar se o que foi entregue corresponde ao que foi comprado e identificar possíveis faltas, excessos ou divergências.</p></details>
+            <details><summary>O sistema proposto substitui o recebimento oficial no TOTVS RM?</summary><p>Não. O TOTVS RM continua sendo o sistema oficial. A proposta apenas apoia a conferência e orienta o endereçamento.</p></details>
+            <details><summary>O que deve ser feito se houver divergência no recebimento?</summary><p>O material deve ser separado ou tratado conforme o procedimento da empresa, e a divergência comunicada ao responsável antes de concluir o processo.</p></details>
+        </div>
+
+
+    <!-- Dica de Pronúncia -->
+    <div class="pronunciation-card">
+        <h3>💡 Lembrete de Pronúncia</h3>
+        <p>Como pronunciar <strong>TOTVS RM</strong>?</p>
+        <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">"Tótus Ré-Eme"</p>
+        <p>Nunca digas <em>"Tótvis"</em>.</p>
+    </div>
+</div>
+
+<script>
+    let isBlurred = false;
+
+    function speakText(elementId) {
+        window.speechSynthesis.cancel();
+
+        const text = document.getElementById(elementId).innerText;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'pt-BR';
+
+        const speed = parseFloat(document.getElementById('speedSelect').value);
+        utterance.rate = speed;
+
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function toggleBlur() {
+        isBlurred = !isBlurred;
+        const boxes = document.querySelectorAll('.speech-box');
+        boxes.forEach(box => {
+            if (isBlurred) {
+                box.classList.add('blurred');
+            } else {
+                box.classList.remove('blurred');
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
